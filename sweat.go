@@ -65,10 +65,11 @@ func brent(start int) (int, int) {
 		mu += 1
 	}
 
-	return mu,lam
+	return mu, lam
 }
 
-var f = [...]int{6, 6, 0, 1, 4, 3, 3, 4, 0}
+// var f = [...]int{6, 6, 0, 1, 4, 3, 3, 4, 0}
+var f = [...]int{1, 5, 5, 2, 5, 9, 16, 16, 11, 6, 6, 19, 1, 12, 6, 0, 13, 8, 7, 16}
 
 func main() {
 	for i := 0; i < len(f); i++ {
