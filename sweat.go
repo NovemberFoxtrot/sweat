@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 	"os"
-	"strconv"
 	"sir"
+	"strconv"
 )
 
 func floyd(start int) (int, int) {
@@ -82,7 +82,7 @@ func main() {
 
 	for i := 1; i < len(os.Args); i++ {
 		arg, err := strconv.Atoi(os.Args[i])
-	
+
 		sir.CheckError(err)
 
 		if arg > max {
