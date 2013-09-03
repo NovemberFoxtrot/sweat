@@ -1,7 +1,10 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"os"
+	"strconv"
+	"sir"
 )
 
 func floyd(start int) (int, int) {
@@ -68,14 +71,54 @@ func brent(start int) (int, int) {
 	return mu, lam
 }
 
-// var f = [...]int{6, 6, 0, 1, 4, 3, 3, 4, 0}
-var f = [...]int{1, 5, 5, 2, 5, 9, 16, 16, 11, 6, 6, 19, 1, 12, 6, 0, 13, 8, 7, 16}
+var f []int
 
 func main() {
-	for i := 0; i < len(f); i++ {
-		position, length := floyd(i)
-		fmt.Println("floyd", "search start", i, "cycle start position", position, "cycle length", length)
-		position, length = brent(i)
-		fmt.Println("brent", "search start", i, "cycle start position", position, "cycle length", length)
+	if len(os.Args) < 1 {
+		log.Fatal("not enough args")
 	}
+
+	max := 0
+
+	for i := 1; i < len(os.Args); i++ {
+		arg, err := strconv.Atoi(os.Args[i])
+	
+		sir.CheckError(err)
+
+		if arg > max {
+			max = arg
+		}
+	}
+
+	if len(os.Args[1:]) < max {
+		log.Fatal(max, " points to a location not in array")
+	}
+
+	log.Println(max)
+
+	f = make([]int, 0)
+
+	for i := 1; i < len(os.Args); i++ {
+		arg, err := strconv.Atoi(os.Args[i])
+
+		sir.CheckError(err)
+
+		f = append(f, arg)
+	}
+
+	log.Println("\t", "[start pos]", "[cycle start pos]", "[cycle len]")
+
+	for i := 0; i < len(f); i++ {
+		fpos, flen := floyd(i)
+		log.Println("floyd", i, "\t", fpos, "\t", flen)
+
+		bpos, blen := brent(i)
+		log.Println("brent", i, "\t", bpos, "\t", blen)
+
+		if fpos != bpos || flen != blen {
+			log.Fatal("[error]", "floyd and brent do not agree!")
+		}
+	}
+
+	log.Println(f)
 }
