@@ -6,6 +6,7 @@ import (
 	"sir"
 	"strconv"
 )
+//
 
 func floyd(start int) (int, int) {
 	tortoise := f[start]
@@ -35,6 +36,7 @@ func floyd(start int) (int, int) {
 
 	return mu, lam
 }
+
 
 func brent(start int) (int, int) {
 	power := 1
