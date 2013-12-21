@@ -93,7 +93,7 @@ func main() {
 	}
 
 	if len(os.Args[1:]) < max {
-		log.Fatal(max, " points to a location not in array")
+		log.Fatal(max, " points to a location not in the array")
 	}
 
 	log.Println(max)
