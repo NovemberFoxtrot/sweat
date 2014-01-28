@@ -6,7 +6,6 @@ import (
 	"sir"
 	"strconv"
 )
-//
 
 func floyd(start int) (int, int) {
 	tortoise := f[start]
